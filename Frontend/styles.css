@@ -1,0 +1,516 @@
+/* Basic page layout. Leave space beside the sidebar. */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  margin-left: 220px;
+  padding: 30px;
+}
+
+/* Sidebar on the left side of the page. */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background-color: #263442;
+  color: white;
+}
+
+/* Logo and store name. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 35px;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* Remove the default list bullets and spacing. */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin-bottom: 10px;
+}
+
+/* Links and buttons should look the same in the menu. */
+.nav-list a,
+.nav-list button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-list a:hover,
+.nav-list button:hover {
+  background-color: #3c4b5b;
+}
+
+/* Highlight the page currently open. */
+.nav-list a[aria-current="page"] {
+  background-color: #3c4b5b;
+  font-weight: bold;
+}
+
+.sidebar a:focus-visible,
+.sidebar button:focus-visible {
+  outline: 3px solid #ffcf66;
+  outline-offset: 2px;
+}
+
+.sidebar-note {
+  margin-top: 40px;
+  color: #d0d8e0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Product list. The current HTML uses the name "productos". */
+.products,
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+/* Las tarjetas de la misma fila ocupan toda la altura disponible. */
+.products > li,
+.productos > li {
+  display: flex;
+}
+
+/* Each card has the same width. */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background-color: white;
+  font-family: Arial, sans-serif;
+  color: #222222;
+  overflow: hidden;
+}
+
+/* Keep different product images inside the same size area. */
+.product-image {
+  flex-shrink: 0;
+  height: 180px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  text-align: center;
+  font-size: 60px;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 15px;
+}
+
+.product-info h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.description {
+  color: #555555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.price {
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.currency {
+  color: #555555;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.stock {
+  color: #276338;
+  font-size: 14px;
+}
+
+/* El margen automático empuja los botones al fondo de la tarjeta. */
+.card-actions {
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+.btn-delete {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b42332;
+  border-radius: 5px;
+  background-color: white;
+  color: #b42332;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: #fff0f0;
+}
+
+.btn-delete:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+}
+
+/* Ventana para registrar un producto. */
+#dialog-add-producto,
+#dialog-add-categoria,
+#dialog-producto-categorias {
+  width: 400px;
+  max-width: 90%;
+  max-height: 90vh;
+  padding: 25px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background-color: white;
+  color: #222222;
+}
+
+/* Oscurecer el fondo mientras el diálogo está abierto. */
+#dialog-add-producto::backdrop,
+#dialog-add-categoria::backdrop,
+#dialog-producto-categorias::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.close-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: white;
+  color: #555555;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+#registro-ayuda,
+#categoria-ayuda {
+  color: #555555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#producto-form label,
+#categoria-form label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#producto-form input,
+#producto-form textarea,
+#categoria-form input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+#producto-form textarea {
+  resize: vertical;
+}
+
+.dialog-actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.dialog-actions button {
+  margin-top: 5px;
+  padding: 10px 15px;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dialog-actions button[type="submit"] {
+  border-color: #005fcc;
+  background-color: #005fcc;
+  color: white;
+}
+
+.dialog-actions button:hover,
+.close-button:hover {
+  background-color: #eeeeee;
+  color: #222222;
+}
+
+#dialog-add-producto input:focus-visible,
+#dialog-add-producto textarea:focus-visible,
+#dialog-add-producto button:focus-visible,
+#dialog-add-categoria input:focus-visible,
+#dialog-add-categoria button:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
+
+#form-error,
+#categoria-error {
+  color: #b42332;
+  font-size: 14px;
+}
+
+#btn-save-producto:disabled,
+#btn-save-categoria:disabled {
+  background-color: #666666;
+  cursor: wait;
+}
+
+/* Título a la izquierda y botón a la derecha. */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.page-header .eyebrow {
+  margin: 0 0 8px;
+  color: #555555;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #263442;
+  font-size: 32px;
+}
+
+/* Botón para abrir el formulario. */
+.btn-add {
+  padding: 12px 18px;
+  border: 1px solid #005fcc;
+  border-radius: 5px;
+  background-color: #005fcc;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-add:hover {
+  border-color: #004999;
+  background-color: #004999;
+}
+
+.btn-add:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+}
+
+/* Tabla sencilla para las categorías. */
+.tabla-categorias {
+  width: 100%;
+  border-collapse: collapse;
+  color: #222222;
+}
+
+.tabla-categorias caption {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.tabla-categorias th,
+.tabla-categorias td {
+  padding: 12px;
+  border: 1px solid #cccccc;
+  text-align: left;
+}
+
+.tabla-categorias th {
+  background-color: #eeeeee;
+}
+
+.tabla-categorias tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.tabla-categorias .btn-delete {
+  width: auto;
+}
+
+.tabla-categorias .btn-delete:disabled {
+  color: #666666;
+  cursor: wait;
+}
+
+/* Categorías pequeñas y redondeadas dentro de la tarjeta. */
+.product-categories {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.product-categories li {
+  display: inline-block;
+}
+
+.categoria-pill {
+  border: none;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  border-radius: 15px;
+  background-color: #e8eef5;
+  color: #263442;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.categoria-pill:hover {
+  background-color: #b42332;
+  color: white;
+}
+
+.categoria-pill:focus-visible {
+  outline: 2px solid #b42332;
+  outline-offset: 2px;
+}
+
+.categoria-pill:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Botón de categorías encima del botón de eliminar. */
+.btn-producto-categorias {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #005fcc;
+  border-radius: 5px;
+  background-color: white;
+  color: #005fcc;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-producto-categorias:hover {
+  background-color: #e8eef5;
+}
+
+#campos-producto-categorias {
+  padding: 12px;
+  border: 1px solid #cccccc;
+}
+
+#lista-producto-categorias {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#lista-producto-categorias label {
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+}
+
+#lista-producto-categorias label:hover {
+  background-color: #eeeeee;
+}
+
+#lista-producto-categorias input {
+  margin-right: 8px;
+}
+
+#error-producto-categorias {
+  color: #b42332;
+  font-size: 14px;
+}
+
+#btn-save-producto-categorias:disabled {
+  background-color: #666666;
+  cursor: wait;
+}
+
+.btn-producto-categorias:focus-visible,
+#dialog-producto-categorias button:focus-visible,
+#dialog-producto-categorias input:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
+
+.page-footer {
+  padding: 1.5rem 0;
+}

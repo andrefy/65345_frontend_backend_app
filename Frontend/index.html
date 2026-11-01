@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MiTienda." />
+    <title>MiTienda</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts.js" defer></script>
+  </head>
+  <body>
+    <!-- Menu Laterial -->
+    <aside class="sidebar" aria-label="Barra lateral">
+      <a class="brand" href="./index.html" aria-label="MiTienda, inicio">
+        <img src="assets/images/tienda-logo.png" alt="" width="32" height="32" />
+        <span>MiTienda</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="#catalogo" aria-current="page">Productos</a></li>
+          <li><button type="button" data-add>Agregar producto</button></li>
+          <li><a href="#busqueda">Buscar producto</a></li>
+          <li><a href="./categorias.html">Categorías</a></li>
+          <li><a href="./categorias.html#nueva-categoria">Agregar categoría</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main id="contenido" tabindex="-1">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">MI TIENDA</p>
+          <h1>Productos</h1>
+        </div>
+        <button id="btn-add-product" class="btn-add" type="button" data-add>Nuevo producto</button>
+      </header>
+
+      <section id="catalogo" aria-labelledby="catalogo-titulo">
+        <h2> Catálogo de productos</h2>
+        <form class="search" role="search" aria-label="Buscar en el catálogo">
+          <label for="busqueda">Buscar productos por ID</label>
+          <input type="search" id="busqueda" name="busqueda" placeholder="Buscar por ID…" aria-describedby="search-help" />
+          <button type="submit" class="button button-search">Buscar</button>
+        </form>
+        <p id="estado-producto" role="status"></p>
+        <ul id="productos" class="productos"></ul>
+      </section>
+      <footer class="page-footer">MiTienda</footer>
+    </main>
+
+    <dialog id="dialog-add-producto" aria-labelledby="registro-titulo" aria-describedby="registro-ayuda">
+      <form id="producto-form">
+        <div class="dialog-header">
+          <h2 id="registro-titulo">Nuevo producto</h2>
+          <button type="button" class="close-button" data-close aria-label="Cerrar formulario">×</button>
+        </div>
+        <p id="registro-ayuda">Todos los campos son obligatorios. El producto se guardará en la base de datos.</p>
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" required maxlength="100" />
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" name="descripcion" required maxlength="300" rows="3"></textarea>
+        <div class="form-row">
+          <div><label for="precio">Precio (USD)</label><input id="precio" name="precio" type="number" min="0" step="0.01" required /></div>
+          <div><label for="stock">Stock</label><input id="stock" name="stock" type="number" min="0" step="1" required /></div>
+        </div>
+        <p id="form-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button type="button" class="button button-outline" data-close>Cancelar</button>
+          <button type="submit" class="button button-primary" id="btn-save-producto">Guardar producto</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="dialog-producto-categorias" aria-labelledby="producto-categorias-titulo" aria-describedby="producto-categorias-ayuda">
+      <form id="producto-categorias-form">
+        <div class="dialog-header">
+          <h2 id="producto-categorias-titulo">Categorías del producto</h2>
+          <button type="button" class="close-button" data-close-producto-categorias aria-label="Cerrar categorías del producto">×</button>
+        </div>
+        <p id="producto-categorias-ayuda" role="status">Selecciona las categorías del producto.</p>
+        <fieldset id="campos-producto-categorias">
+          <legend>Categorías disponibles</legend>
+          <ul id="lista-producto-categorias"></ul>
+        </fieldset>
+        <p id="error-producto-categorias" role="alert"></p>
+        <div class="dialog-actions">
+          <button type="button" data-close-producto-categorias>Cancelar</button>
+          <button type="submit" id="btn-save-producto-categorias">Guardar categorías</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categorías | MiTienda</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="categorias.js" defer></script>
+  </head>
+  <body>
+    <aside class="sidebar" aria-label="Barra lateral">
+      <a class="brand" href="./index.html" aria-label="MiTienda, inicio">
+        <img src="assets/images/tienda-logo.png" alt="" width="32" height="32" />
+        <span>MiTienda</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="./index.html#catalogo">Productos</a></li>
+          <li><a href="./index.html#nuevo-producto">Agregar producto</a></li>
+          <li><a href="./index.html#busqueda">Buscar producto</a></li>
+          <li><a href="./categorias.html" aria-current="page">Categorías</a></li>
+          <li><button type="button" data-add-categoria>Agregar categoría</button></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main id="contenido">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">MI TIENDA</p>
+          <h1>Categorías</h1>
+        </div>
+        <button id="btn-add-categoria" class="btn-add" type="button" data-add-categoria>Nueva categoría</button>
+      </header>
+
+      <p id="estado-categorias" role="status"></p>
+      <table class="tabla-categorias">
+        <caption>Listado de categorías</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="categorias"></tbody>
+      </table>
+      <p id="sin-categorias" hidden>No hay categorías registradas.</p>
+      <footer class="page-footer">MiTienda</footer>
+    </main>
+
+    <dialog id="dialog-add-categoria" aria-labelledby="categoria-titulo" aria-describedby="categoria-ayuda">
+      <form id="categoria-form">
+        <div class="dialog-header">
+          <h2 id="categoria-titulo">Nueva categoría</h2>
+          <button type="button" class="close-button" data-close-categoria aria-label="Cerrar formulario">×</button>
+        </div>
+        <p id="categoria-ayuda">Ingresa el nombre. La categoría se guardará en la base de datos.</p>
+        <label for="nombre-categoria">Nombre</label>
+        <input id="nombre-categoria" name="nombre" required />
+        <p id="categoria-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button type="button" data-close-categoria>Cancelar</button>
+          <button type="submit" id="btn-save-categoria">Guardar categoría</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
